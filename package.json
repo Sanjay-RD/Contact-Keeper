@@ -1,0 +1,12 @@
+{
+  "name": "contact-keeper",
+  "version": "1.0.0",
+  "description": "Backend Api For Contact Keeper",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
