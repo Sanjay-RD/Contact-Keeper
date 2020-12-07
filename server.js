@@ -1,6 +1,14 @@
 const express = require("express");
 const colors = require("colors");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
 const app = express();
+
+// config dotenv
+dotenv.config({ path: "./config/config.env" });
+
+// connect Database
+connectDB();
 
 // get router files
 const auth = require("./routes/auth");
