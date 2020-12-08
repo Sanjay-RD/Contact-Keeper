@@ -29,7 +29,7 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
-
+      // console.log(user);
       if (user) {
         return res.status(400).json({
           success: false,
@@ -49,7 +49,7 @@ router.post(
 
       await user.save();
 
-      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
       });
 
