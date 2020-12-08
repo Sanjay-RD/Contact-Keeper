@@ -10,6 +10,9 @@ dotenv.config({ path: "./config/config.env" });
 // connect Database
 connectDB();
 
+// body parser middleware
+app.use(express.json({ extended: false }));
+
 // get router files
 const auth = require("./routes/auth");
 const user = require("./routes/user");
