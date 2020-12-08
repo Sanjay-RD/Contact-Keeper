@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
 
@@ -48,9 +49,13 @@ router.post(
 
       await user.save();
 
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRE,
+      });
+
       res.status(200).json({
         success: true,
-        data: "USer Register",
+        token,
       });
     } catch (err) {
       console.error(err.message);
