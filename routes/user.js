@@ -37,28 +37,20 @@ router.post(
         });
       }
 
-      user = new User({
+      const userCreate = await User.create({
         name,
         email,
         password,
       });
 
-      const salt = await bcrypt.genSalt(10);
-
-      user.password = await bcrypt.hash(password, salt);
-
-      await user.save();
-
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE,
-      });
+      const token = userCreate.getSignedJwtToken();
 
       res.status(200).json({
         success: true,
         token,
       });
     } catch (err) {
-      console.error(err.message);
+      console.error(err.message.red.inverse);
       res.status(400).json({
         success: false,
         msg: "Server Error",
