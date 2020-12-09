@@ -1,14 +1,26 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/auth");
+const Contact = require("../models/Contact");
 
 // @desc      Get all user contact
 // @route     GET api/v1/contacts
 // @access    Private
-router.get("/", (req, res) => {
-  res.status(200).json({
-    success: true,
-    data: "Get All user contacts",
-  });
+router.get("/", auth, async (req, res) => {
+  try {
+    // console.log(req.id);
+    const contacts = await Contact.find({ user: req.id });
+    res.status(200).json({
+      success: true,
+      contacts,
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      success: true,
+      msg: "Server Error",
+    });
+  }
 });
 
 // @desc      create contact
