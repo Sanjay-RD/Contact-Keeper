@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
+const auth = require("../middleware/auth");
 
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
@@ -8,11 +8,20 @@ const router = express.Router();
 // @desc      Get all logged in user
 // @route     GET api/v1/auth
 // @access    Private
-router.get("/", (req, res) => {
-  res.status(200).json({
-    success: true,
-    data: "Get All login user",
-  });
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.id).select("-password");
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      success: true,
+      msg: "Server Error",
+    });
+  }
 });
 
 // @desc      Auth user and get token // Login user and get token
