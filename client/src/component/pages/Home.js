@@ -1,10 +1,11 @@
 import React from "react";
+import Contacts from "../contact/Contacts";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <React.Fragment>
+      <Contacts />
+    </React.Fragment>
   );
 };
 
