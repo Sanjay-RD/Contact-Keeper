@@ -3,9 +3,12 @@ import Contacts from "../contact/Contacts";
 
 const Home = () => {
   return (
-    <React.Fragment>
-      <Contacts />
-    </React.Fragment>
+    <div className="grid-2">
+      <div>{/* Contact Form */}</div>
+      <div>
+        <Contacts />
+      </div>
+    </div>
   );
 };
 
