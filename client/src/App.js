@@ -7,25 +7,30 @@ import Register from "./component/auth/Register";
 import Login from "./component/auth/Login";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
+import AlertState from "./context/alert/AlertState";
+import Alerts from "./component/layout/Alerts";
 import "./App.css";
 
 function App() {
   return (
     <AuthState>
       <ContactState>
-        <Router>
-          <Fragment>
-            <Header title="Contact Keeper" icon="fa fa-id-card-o" />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-              </Switch>
-            </div>
-          </Fragment>
-        </Router>
+        <AlertState>
+          <Router>
+            <Fragment>
+              <Header title="Contact Keeper" icon="fa fa-id-card-o" />
+              <div className="container">
+                <Alerts />
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/about" component={About} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+                </Switch>
+              </div>
+            </Fragment>
+          </Router>
+        </AlertState>
       </ContactState>
     </AuthState>
   );
