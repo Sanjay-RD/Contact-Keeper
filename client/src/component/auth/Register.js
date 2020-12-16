@@ -77,7 +77,7 @@ const Register = (props) => {
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             placeholder="Enter your password"
             name="password"
             value={password}
@@ -87,7 +87,7 @@ const Register = (props) => {
         <div className="form-group">
           <label htmlFor="password2">Confirm password</label>
           <input
-            type="text"
+            type="password"
             placeholder="Enter your confirm password"
             name="password2"
             value={password2}

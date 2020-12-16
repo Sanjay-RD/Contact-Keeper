@@ -51,7 +51,7 @@ const Login = (props) => {
         <div className="form-group">
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={onChange}
