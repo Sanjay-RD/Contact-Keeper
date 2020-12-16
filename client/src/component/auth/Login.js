@@ -13,8 +13,8 @@ const Login = (props) => {
     if (isAuthenticated) {
       props.history.push("/");
     }
-    if (error === "Invalid Crediential") {
-      setAlert("Please fill all field", "danger");
+    if (error === "Invalid Crenditial") {
+      setAlert(error, "danger");
       clearErrors();
     }
     // eslint-disable-next-line
@@ -32,10 +32,14 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login({
-      email,
-      password,
-    });
+    if (email === "" || password === "") {
+      setAlert("Please fill all field", "danger");
+    } else {
+      login({
+        email,
+        password,
+      });
+    }
   };
 
   return (
