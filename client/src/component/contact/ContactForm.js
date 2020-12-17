@@ -1,10 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/contactContext";
+import AlertContext from "../../context/alert/alertContext";
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
+  const alertContext = useContext(AlertContext);
 
-  const { addContact, updateContact, clearCurrent, current } = contactContext;
+  const {
+    addContact,
+    updateContact,
+    clearCurrent,
+    current,
+    // error,
+  } = contactContext;
+  const { setAlert } = alertContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -33,7 +42,10 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (current === null) {
+    if (name === "" || phone === "") {
+      // setAlert(error, "danger");
+      setAlert("Name and Phone number is complusory", "danger");
+    } else if (current === null) {
       addContact(contact);
     } else {
       updateContact(contact);

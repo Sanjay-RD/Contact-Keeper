@@ -6,17 +6,20 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
   const { contacts, filtered } = contactContext;
+  if (contacts.length === 0) {
+    return <h4>Please Add Contact</h4>;
+  }
   return (
     <React.Fragment>
       <TransitionGroup>
         {filtered !== null
           ? filtered.map((contact) => (
-              <CSSTransition key={contact.id} timeout={500} classNames="item">
+              <CSSTransition key={contact._id} timeout={500} classNames="item">
                 <ContactItems contact={contact} />
               </CSSTransition>
             ))
           : contacts.map((contact) => (
-              <CSSTransition key={contact.id} timeout={500} classNames="item">
+              <CSSTransition key={contact._id} timeout={500} classNames="item">
                 <ContactItems contact={contact} />
               </CSSTransition>
             ))}
