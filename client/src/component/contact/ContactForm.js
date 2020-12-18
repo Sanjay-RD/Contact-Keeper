@@ -42,7 +42,7 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (name === "" || phone === "") {
+    if (name === "" || email === "" || phone === "") {
       // setAlert(error, "danger");
       setAlert("Name and Phone number is complusory", "danger");
     } else if (current === null) {

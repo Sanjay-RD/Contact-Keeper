@@ -2,12 +2,17 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AuthContext from "../../context/auth/authContext";
+import ContactContext from "../../context/contact/contactContext";
 
 const Header = ({ icon, title }) => {
+  const contactContext = useContext(ContactContext);
+
   const { isAuthenticated, logout, user } = useContext(AuthContext);
+  const { clearContact } = contactContext;
 
   const onLogout = () => {
     logout();
+    clearContact();
   };
 
   const authLinks = (
